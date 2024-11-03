@@ -126,7 +126,7 @@ async def send_contact_card(
         [
             InlineKeyboardButton(
                 f"{'🏆 高级会员' if user.is_premium else '✈️ 普通会员' }",
-                url=f"https://github.com/MiHaKun/Telegram-interactive-bot",
+                url=f"https://github.com",
             )
         ]
     )
@@ -142,7 +142,7 @@ async def send_contact_card(
         await context.bot.send_photo(
             chat_id,
             photo=pic,
-            caption=f"👤 {mention_html(user.id, user.first_name)}\n\n📱 {user.id}\n\n🔗 @{user.username if user.username else '无'}",
+            caption=f"用户名称：{mention_html(user.id, user.first_name)}\n用户名：@{user.username if user.username else '无'}\n唯一ID：{user.id}",
             message_thread_id=message_thread_id,
             reply_markup=InlineKeyboardMarkup(buttons),
             parse_mode="HTML",
@@ -266,13 +266,13 @@ async def forwarding_message_u2a(update: Update, context: ContextTypes.DEFAULT_T
     if not message_thread_id:
         formn = await context.bot.create_forum_topic(
             chat_id,
-            name=f"工单{random.randint(10000,99999)}|{user.full_name}|{user.id}",
+            name=f"{user.full_name}",
         )
         message_thread_id = formn.message_thread_id
         u.message_thread_id = message_thread_id
         await context.bot.send_message(
             chat_id,
-            f"新的用户 {mention_html(user.id, user.full_name)} 开始了一个新的会话。",
+            f"用户 {mention_html(user.id, user.full_name)} 开始了一个新的会话。",
             message_thread_id=message_thread_id,
             parse_mode="HTML",
         )
