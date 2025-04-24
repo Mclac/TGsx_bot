@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  telegram-interactive-bot:
+    build: .  # 从当前目录构建镜像
+    image: tgibot:latest  # 指定镜像名称和标签
+    container_name: telegram-interactive-bot
+    restart: always
+    volumes:
+      - "./:/app"  # 挂载当前目录到容器内的 /app 目录
